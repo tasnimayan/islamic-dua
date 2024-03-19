@@ -73,6 +73,10 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 | :----------- | :---- | :------------------------ |
 | `categoryId` | `int` | **Required**. category id |
 
+## Important! ===
+
+sqlite database with three tables is needed in the models folder where the database connection is made.
+
 ## License
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)

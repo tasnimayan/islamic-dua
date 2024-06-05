@@ -75,6 +75,6 @@ sqlite database with three tables is needed in the models folder where the datab
 ## Screenshots
 
 Desktop View
-![Desktop View](https://github.com/tasnimayan/islamic-dua/blob/main/client/public/screenshot/desktop.png)
+![Desktop View](https://github.com/tasnimayan/islamic-dua/blob/main/public/screenshot/desktop.png)
 Tablet View
-![Tablet View](https://github.com/tasnimayan/islamic-dua/blob/main/client/public/screenshot/tablet.png)
+![Tablet View](https://github.com/tasnimayan/islamic-dua/blob/main/public/screenshot/tablet.png)

@@ -1,6 +1,5 @@
 import { create } from 'zustand'
 import axios from 'axios'
-const baseURL = "http://localhost:5000/api/v1"
 
 const duaStore = create((set) => ({
 
@@ -14,25 +13,23 @@ const duaStore = create((set) => ({
   showCategory:false,
   setShowCategory: () => set((state) => ({ showCategory: !state.showCategory })),
 
-
-  
   categoryList: null,
   categoryListRequest: async()=>{
     try {
-        let res = await axios.get(`${baseURL}/categories`);
-        set({categoryList:res.data['data']})
+      let res = await axios.get(`/api/categories`);
+      set({categoryList:res.data['data']})
     }catch (e) {
-        console.log(e)
+      console.log(e)
     }
   },
 
   subCategoryList: null,
   subCategoryListRequest: async(categoryId)=>{
     try {
-        let res = await axios.get(`${baseURL}/sub_cat/${categoryId}`);
-        set({subCategoryList:res.data['data']})
+      let res = await axios.get(`/api/sub_cat/${categoryId}`);
+      set({subCategoryList:res.data['data']})
     }catch (e) {
-        console.log(e)
+      console.log(e)
     }
   },
 
@@ -40,10 +37,10 @@ const duaStore = create((set) => ({
   duaList: null,
   duaListRequest: async(categoryId)=>{
     try {
-        let res = await axios.get(`${baseURL}/dua/${categoryId}`);
-        set({duaList:res.data['data']})
+      let res = await axios.get(`/api/dua/${categoryId}`);
+      set({duaList:res.data['data']})
     }catch (e) {
-        console.log(e)
+      console.log(e)
     }
   },
 

@@ -4,7 +4,7 @@
 import { useEffect, useState} from 'react';
 import { useSearchParams } from 'next/navigation';
 
-import duaStore from './../store/duaStore';
+import duaStore from '../store/duaStore';
 import CategoryList from './categoryList';
 
 

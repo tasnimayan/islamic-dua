@@ -1,20 +1,23 @@
-const db = require('../models/dbConnection')
+import db from './connection'
 
-// Get ALl The category  (complete)
-exports.GetAllCategory = async (req, res) => {
-  db.all('SELECT * FROM category', (err, result) => {
-    if (err) {
-      console.error('Inter Error:', err);
-      return res.status(500).json({ error: 'Internal server error' });
-    }
-    res.status(200).send({satus:'success', data:result});
+export const GetAllCategory = async () => {
+  return new Promise((resolve, reject) => {
+    db.all('SELECT * FROM category', (err, result) => {
+      if (err) {
+        console.error('Internal Error:', err);
+        reject({ status: 'fail', message: 'Internal server error' });
+      } else {
+        resolve(result);
+      }
+    });
   });
 };
 
 // Get ALl The sub_categories of a specific category  (complete)
-exports.GetSubCategory = async (req, res) => {
-
-  const categoryId = req.params.categoryId;
+export const GetSubCategory = async (categoryId) => {
+  if(!categoryId){
+    return { status:'fail', message:'No category id is provided' };
+  }
 
   const query = `
     SELECT s.*,
@@ -33,27 +36,29 @@ exports.GetSubCategory = async (req, res) => {
     GROUP BY
       s.subcat_id;
   `
-  db.all(query, (err, subcategories) => {
-    if (err) {
-      console.error('Internal Error:', err);
-      res.status(500).json({ error: 'Internal server error' });
-      return;
-    }
 
-// Remove  backslashes from the dua names
-    const result = subcategories.map(item => ({
-      ...item,
-      duas : JSON.parse(item["duas"])
-    }));
-
-    res.json({satus:'success', data:result});
+  return new Promise((resolve, reject) => {
+    db.all(query, (err, subcategories) => {
+      if (err) {
+        console.error('Internal Error:', err);
+        reject({ status: 'fail', message: 'Internal server error' });
+      } else {
+        // Remove  backslashes from the dua names
+        const result = subcategories.map(item => ({
+          ...item,
+          duas : JSON.parse(item["duas"])
+        }));
+        resolve(result);
+      }
+    });
   });
 };
 
-
 // Get ALl The Duas of a specific category (complete)
-exports.GetDua = async (req, res) => {
-  const categoryId = req.params.categoryId;
+export const GetDua = async (categoryId) => {
+  if(!categoryId){
+    return { status:'fail', message:'No category id is provided' };
+  }
 
   let query = `
     SELECT 
@@ -87,20 +92,20 @@ exports.GetDua = async (req, res) => {
     WHERE dua.cat_id = ${categoryId}
     GROUP BY dua.subcat_id, sub_category.subcat_name_en, sub_category.subcat_name_bn;
   `
-	db.all(query, (err, duas) => {
-			if (err) {
-					console.error('Error retrieving duas:', err.message);
-					res.status(500).json({ error: 'Internal server error' });
-					return;
-			}
 
-
-      const result = duas.map(item => ({
-        ...item,
-        duas : JSON.parse(item["duas"])
-      }));
-
-			res.json({status:'success', data: result});
-	});
+  return new Promise((resolve, reject) => {
+    db.all(query, (err, duas) => {
+      if (err) {
+        console.error('Internal Error:', err);
+        reject({ status: 'fail', message: 'Internal server error' });
+      } else {
+        const result = duas.map(item => ({
+          ...item,
+          duas : JSON.parse(item["duas"])
+        }));
+        resolve(result);
+      }
+    });
+  });
 
 };

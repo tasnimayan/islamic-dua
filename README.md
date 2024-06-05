@@ -14,18 +14,9 @@ Clone the repository
 $ git clone https://github.com/tasnimayan/islamic-dua.git
 ```
 
-First, run the API server
+Then, run the Next.js Application:
 
 ```bash
-npm install
-
-npm run start
-```
-
-Then, run the Frontend server:
-
-```bash
-cd client
 npm install
 npm run dev
 
@@ -39,8 +30,6 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 
 - [Node](https://nodejs.org/en/)
 
-- [Express](https://expressjs.com/)
-
 - [SQLite](https://www.sqlite.org/)
 
 - [Next.js](https://nextjs.org/)
@@ -50,13 +39,13 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 #### Get all categories
 
 ```http
-  GET /api/v1/categories/
+  GET /api/categories/
 ```
 
 #### Get Dua of specific id
 
 ```http
-  GET /api/v1/dua/${categoryId}
+  GET /api/dua/${categoryId}
 ```
 
 | Parameter    | Type  | Description                      |
@@ -66,7 +55,7 @@ You can start editing the page by modifying `app/page.js`. The page auto-updates
 #### Get sub categories of specific category
 
 ```http
-  GET /api/v1/sub_cat/${categoryId}
+  GET /api/sub_cat/${categoryId}
 ```
 
 | Parameter    | Type  | Description               |

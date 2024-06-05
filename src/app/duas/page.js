@@ -7,7 +7,7 @@ const page = () => {
   const router = useRouter()
   
   useEffect(()=>{
-    router.replace(linkPath ?? '/duas/category?cat=1')
+    router.replace('/duas/category?cat=1')
   },[])
   return null
 };
